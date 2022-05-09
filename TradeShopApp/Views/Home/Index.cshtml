@@ -2,17 +2,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    <div class="bg-success col-sm-4 category-list">
+<div class="row pt-2">
+    <div id="category-list" class="col-md-4 col-sm-12 p-2 bg-success">
         <ul>
-            @foreach (var node in ViewBag.Categories)
-            {
-                PrintCategoriesRecursive(node);
+            @{
+                PrintCategoriesRecursive(ViewBag.CategoryTree);
             }
         </ul>
     </div>
-    <div class="bg-warning col-sm-8 items-grid">
-
+    <div id="items-grid" class="col-md-8">
+        <div class="row">
+            @foreach (Product product in ViewBag.Products)
+            {
+                <div id="product" class="container bg-info mb-2">
+                    <div class="row">
+                        <div class="col-6 mb-4 align-items-center">
+                            <img src="@product.ThumbnailPath" class="img-fluid d-flex align-items-center justify-content-center" />
+                        </div>
+                        <div class="col-6 mb-4">
+                            <h2>@product.ProductName</h2>
+                            <h3>$@product.Price</h3>
+                            <h5>(@product.Quantity left)</h5>
+                            <p>@product.Description</p>
+                            <p>@product.Owner?.FirstName @product.Owner?.LastName</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
@@ -21,7 +38,10 @@
     {
         if (node != null)
         {
-            <li>@node.category.CategoryName</li>
+            if (node.category != null)
+            {
+                <li><h4>@node.category.CategoryName</h4></li>
+            }
             <ul>
                 @{foreach (var child in node.nodes)
                     {
