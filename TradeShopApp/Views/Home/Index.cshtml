@@ -1,54 +1,45 @@
-﻿@{
+﻿@model IndexViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="row pt-2">
-    <div id="category-list" class="col-md-4 col-sm-12 p-2 bg-success">
-        <ul>
-            @{
-                PrintCategoriesRecursive(ViewBag.CategoryTree);
-            }
-        </ul>
+<div class="row pg-size">
+    <div class="col-lg-3 pt-2 bg-light border-right">
+        <h3>Categories:</h3>
+        <partial name="CategoryPartial" model="@Model.CategoryTree" />
     </div>
-    <div id="items-grid" class="col-md-8">
-        <div class="row">
-            @foreach (Product product in ViewBag.Products)
+    <div class="col-lg-9 bg-white container-fluid overflow-hidden">
+        <div class="row mx-3 gy-5">
+            @foreach (Product product in Model.ProductsDisplay.Take(4))
             {
-                <div id="product" class="container bg-info mb-2">
-                    <div class="row">
-                        <div class="col-6 mb-4 align-items-center">
-                            <img src="@product.ThumbnailPath" class="img-fluid d-flex align-items-center justify-content-center" />
-                        </div>
-                        <div class="col-6 mb-4">
-                            <h2>@product.ProductName</h2>
-                            <h3>$@product.Price</h3>
-                            <h5>(@product.Quantity left)</h5>
-                            <p>@product.Description</p>
-                            <p>@product.Owner?.FirstName @product.Owner?.LastName</p>
-                        </div>
-                    </div>
-                </div>
+                <partial name="ProductPartial" model="@product"/>
             }
         </div>
     </div>
 </div>
-
-@{
-    void PrintCategoriesRecursive(CategoryNode node)
-    {
-        if (node != null)
+@*<div class="row pg-size">
+    <div id="category-list" class="col-xl-3 col-lg-4 pt-2 bg-light border-right">
+        <h3>Categories:</h3>
+        <partial name="CategoryPartial" model="@Model.CategoryTree" />
+    </div>
+    <div id="items-grid" class="col-xl-9 col-lg-8 bg-white">
+        @foreach (Product prod in Model.ProductsDisplay)
         {
-            if (node.category != null)
-            {
-                <li><h4>@node.category.CategoryName</h4></li>
-            }
-            <ul>
-                @{foreach (var child in node.nodes)
-                    {
-                        PrintCategoriesRecursive(child);
-                    }
-                }
-            </ul>
+            <div class="col-12 p-1 border bg-info mx-3 my-1">
+                <div class="row">
+                    <div class="col-3">
+                        <img class="img-fluid mx-auto d-block fit-image" src="@prod.ThumbnailPath" />
+                    </div>
+                    <div class="col-6">
+                        <h2>@prod.ProductName</h2>
+                        <p>@prod.Description</p>
+                    </div>
+                    <div class="col-3">
+                        <h2>$@prod.Price</h2>
+                        <p>In stock: @prod.Quantity</p>
+                    </div>
+                </div>
+            </div>
         }
-    }
-}
+    </div>*@
+</div>

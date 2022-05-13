@@ -14,69 +14,27 @@ namespace TradeShopApp.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> logger;
-		private readonly ApplicationDbContext dbContext;
+		private readonly ApplicationDbContext context;
 
-		public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+		public HomeController(ApplicationDbContext context)
 		{
-			this.logger = logger;
-			this.dbContext = dbContext;
-		}
-
-		public IActionResult Users()
-		{
-			return Ok(dbContext.Users.ToList());
-		}
-
-		public IActionResult Products()
-		{
-			return Ok(dbContext.Products
-				.Include(x => x.Owner)
-				.Include(x => x.Category)
-				.ToList());
+			this.context = context;
 		}
 
 		public IActionResult Index()
 		{
-			var categories = dbContext.Categories.ToList();
-
-			var categoryTree = GetCategoryTree(categories);
-
-			ViewBag.CategoryTree = categoryTree;
-			ViewBag.Products = dbContext.Products
+			var categoryTree = Node<Category>.GetTree(context.Categories.ToList());
+			var model = new IndexViewModel();
+			model.CategoryTree = categoryTree;
+			model.ProductsDisplay = context.Products
 				.Include(x => x.Owner)
-				.Include(x => x.Category)
 				.ToList();
-			return View();
+			return View(model);
 		}
 
 		public IActionResult Privacy()
 		{
 			return View();
-		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
-
-		private static CategoryNode GetCategoryTree(List<Category> categories)
-		{
-			var root = new CategoryNode(null);
-			var categoryNodes = categories.
-				Select(c => new CategoryNode(c))
-				.ToList();
-			var childsHash = categoryNodes.ToLookup(node => node.category.ParentCategoryId);
-
-			foreach (var node in categoryNodes)
-			{
-				node.nodes = childsHash[node.category.CategoryId].ToList();
-			}
-			root.nodes = categoryNodes
-				.Where(c => !c.category.ParentCategoryId.HasValue)
-				.ToList();
-			return root;
 		}
 	}
 }

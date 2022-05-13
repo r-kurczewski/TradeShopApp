@@ -35,6 +35,7 @@ namespace TradeShopApp.Data
 				new Category(){ CategoryId = 9, CategoryName = "Romance", ParentCategoryId=8},
 				new Category(){ CategoryId = 10, CategoryName = "Fantasy", ParentCategoryId=8},
 				new Category(){ CategoryId = 11, CategoryName = "Sci-Fi", ParentCategoryId=8},
+				new Category(){ CategoryId = 12, CategoryName = "Smartphones", ParentCategoryId=5},
 			};
 			builder.Entity<Category>().HasData(categories);
 
@@ -43,7 +44,7 @@ namespace TradeShopApp.Data
 				new Product()
 				{
 					ProductId = 1,
-					CategoryId = 5,
+					CategoryId = 12,
 					ProductName ="EyePhone 5",
 					Price = 849.99M,
 					Quantity = 2,
@@ -67,7 +68,7 @@ namespace TradeShopApp.Data
 					ProductName ="Black hoodie",
 					Price = 15.60M,
 					Quantity = 15,
-					ThumbnailPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hoodie_man.jpg/330px-Hoodie_man.jpg",
+					ThumbnailPath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb3I_38rtMgpNTapQ30tzsPJR03Oex6im7hg&usqp=CAU",
 					Description = "Very stylish black hoodie.",
 				},
 

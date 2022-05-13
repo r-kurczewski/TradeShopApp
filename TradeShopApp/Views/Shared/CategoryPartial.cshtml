@@ -1,0 +1,15 @@
+﻿@model Node<Category>
+
+@if (Model.item != null) 
+{
+    <li><a asp-controller="Search" asp-route-category="@Model.item.CategoryName"><h4>@Model.item.CategoryName</h4></a></li>
+}
+@if (Model.children.Count > 0)
+{
+<ul>
+    @foreach (var subCategory in Model.children)
+    {
+        <partial name="CategoryPartial" model="@subCategory"/>
+    }
+</ul>
+}

@@ -1,0 +1,17 @@
+﻿@model Product
+
+<div class="col-12 p-1 border bg-info mx-3 my-1">
+    <div class="row">
+        <div class="col-3">
+            <img class="img-fluid mx-auto d-block fit-image" src="@Model.ThumbnailPath" />
+        </div>
+        <div class="col-6">
+            <h2>@Model.ProductName</h2>
+            <p>@Model.Description</p>
+        </div>
+        <div class="col-3">
+            <h2>$@Model.Price</h2>
+            <p>In stock: @Model.Quantity</p>
+        </div>
+    </div>
+</div>
