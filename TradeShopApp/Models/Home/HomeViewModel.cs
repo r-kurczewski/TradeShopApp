@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TradeShopApp.Models
 {
-	public class IndexViewModel
+	public class HomeViewModel
 	{
 		public Node<Category> CategoryTree { get; set; }
 

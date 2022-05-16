@@ -162,6 +162,9 @@ namespace TradeShopApp.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -308,6 +311,12 @@ namespace TradeShopApp.Data.Migrations
                             CategoryId = 11,
                             CategoryName = "Sci-Fi",
                             ParentCategoryId = 8
+                        },
+                        new
+                        {
+                            CategoryId = 12,
+                            CategoryName = "Smartphones",
+                            ParentCategoryId = 5
                         });
                 });
 
@@ -351,7 +360,7 @@ namespace TradeShopApp.Data.Migrations
                         new
                         {
                             ProductId = 1,
-                            CategoryId = 5,
+                            CategoryId = 12,
                             Description = "Great EyePhone 5 with etui, two colors available: red and white.",
                             Price = 849.99m,
                             ProductName = "EyePhone 5",
@@ -376,7 +385,7 @@ namespace TradeShopApp.Data.Migrations
                             Price = 15.60m,
                             ProductName = "Black hoodie",
                             Quantity = 15L,
-                            ThumbnailPath = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hoodie_man.jpg/330px-Hoodie_man.jpg"
+                            ThumbnailPath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb3I_38rtMgpNTapQ30tzsPJR03Oex6im7hg&usqp=CAU"
                         },
                         new
                         {

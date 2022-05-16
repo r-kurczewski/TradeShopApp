@@ -24,7 +24,7 @@ namespace TradeShopApp.Controllers
 		public IActionResult Index()
 		{
 			var categoryTree = Node<Category>.GetTree(context.Categories.ToList());
-			var model = new IndexViewModel();
+			var model = new HomeViewModel();
 			model.CategoryTree = categoryTree;
 			model.ProductsDisplay = context.Products
 				.Include(x => x.Owner)

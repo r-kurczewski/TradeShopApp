@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TradeShopApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/mdbootstrap/css/mdb.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body class="d-flex flex-column">
+<body class="">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TradeShopApp</a>
@@ -33,16 +34,17 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="pb-3 container-fluid flex-fill main">
+    <main role="main" class="container-fluid main">
         @RenderBody()
     </main>
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - TradeShopApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container-fluid">
+            <strong>This is only a demonstration website, do not provide any sensitive information.</strong>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/lib/mdbootstrap/js/mdb.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
