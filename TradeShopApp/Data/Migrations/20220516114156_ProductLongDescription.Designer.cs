@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeShopApp.Data;
 
 namespace TradeShopApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220516114156_ProductLongDescription")]
+    partial class ProductLongDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -333,9 +335,6 @@ namespace TradeShopApp.Data.Migrations
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OfferDetails")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("OwnerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -367,8 +366,6 @@ namespace TradeShopApp.Data.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 12,
-                            LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius lacus eu feugiat faucibus. Proin eu auctor ipsum. Maecenas ultricies eu eros nec euismod. Proin vel neque sagittis leo convallis scelerisque. Nulla scelerisque purus eu rhoncus bibendum. Praesent tempor at purus id vulputate. Donec a placerat augue. Suspendisse mollis lacinia dictum. Suspendisse iaculis diam eu lacus hendrerit eleifend. Nullam nunc risus, pharetra sed nulla in, consequat efficitur nunc. In hac habitasse platea dictumst. Vivamus vitae ante ullamcorper, accumsan urna feugiat, posuere libero. Pellentesque est ex, dignissim vitae mauris in, cursus blandit velit. Maecenas ut mi venenatis, laoreet tortor rhoncus, vestibulum enim. Donec sit amet nisl nec nulla maximus tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque volutpat vestibulum lorem id rhoncus. Cras ultrices lorem vel nunc consequat, ac ultrices nisi fermentum. Donec ullamcorper lorem aliquam enim ullamcorper tristique. Mauris convallis arcu ut dui faucibus, sed sollicitudin metus feugiat. Nulla eget iaculis velit. Nulla porta accumsan nisl, id porttitor libero accumsan ut. Nam vestibulum velit eu leo cursus, a bibendum tortor volutpat. Praesent blandit elementum neque, eu ornare lectus placerat et. Aliquam scelerisque, libero et congue maximus, diam nulla viverra quam, tristique lobortis neque tortor a justo. Curabitur vitae purus quis ante hendrerit hendrerit. Sed nec dolor magna. Ut rhoncus ultrices justo sit amet malesuada. Vestibulum augue mauris, porta in ullamcorper aliquet, aliquam nec metus. Curabitur non risus ut felis condimentum venenatis sit amet vel quam.",
-                            OfferDetails = "Shipping only to the USA and EU.\r\nStandard Delivery (3-7 days): $10.50\r\nExpress Delivery: (1-3 days) $15.90",
                             Price = 849.99m,
                             ProductName = "EyePhone 5",
                             Quantity = 2L,
@@ -379,8 +376,6 @@ namespace TradeShopApp.Data.Migrations
                         {
                             ProductId = 2,
                             CategoryId = 10,
-                            LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius lacus eu feugiat faucibus. Proin eu auctor ipsum. Maecenas ultricies eu eros nec euismod. Proin vel neque sagittis leo convallis scelerisque. Nulla scelerisque purus eu rhoncus bibendum. Praesent tempor at purus id vulputate. Donec a placerat augue. Suspendisse mollis lacinia dictum. Suspendisse iaculis diam eu lacus hendrerit eleifend. Nullam nunc risus, pharetra sed nulla in, consequat efficitur nunc. In hac habitasse platea dictumst. Vivamus vitae ante ullamcorper, accumsan urna feugiat, posuere libero. Pellentesque est ex, dignissim vitae mauris in, cursus blandit velit. Maecenas ut mi venenatis, laoreet tortor rhoncus, vestibulum enim. Donec sit amet nisl nec nulla maximus tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque volutpat vestibulum lorem id rhoncus. Cras ultrices lorem vel nunc consequat, ac ultrices nisi fermentum. Donec ullamcorper lorem aliquam enim ullamcorper tristique. Mauris convallis arcu ut dui faucibus, sed sollicitudin metus feugiat. Nulla eget iaculis velit. Nulla porta accumsan nisl, id porttitor libero accumsan ut. Nam vestibulum velit eu leo cursus, a bibendum tortor volutpat. Praesent blandit elementum neque, eu ornare lectus placerat et. Aliquam scelerisque, libero et congue maximus, diam nulla viverra quam, tristique lobortis neque tortor a justo. Curabitur vitae purus quis ante hendrerit hendrerit. Sed nec dolor magna. Ut rhoncus ultrices justo sit amet malesuada. Vestibulum augue mauris, porta in ullamcorper aliquet, aliquam nec metus. Curabitur non risus ut felis condimentum venenatis sit amet vel quam.",
-                            OfferDetails = "Shipping only to the USA and EU.\r\nStandard Delivery (3-7 days): $10.50\r\nExpress Delivery: (1-3 days) $15.90",
                             Price = 35.60m,
                             ProductName = "Whicher: The lady of the River",
                             Quantity = 1L,
@@ -391,8 +386,6 @@ namespace TradeShopApp.Data.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 3,
-                            LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius lacus eu feugiat faucibus. Proin eu auctor ipsum. Maecenas ultricies eu eros nec euismod. Proin vel neque sagittis leo convallis scelerisque. Nulla scelerisque purus eu rhoncus bibendum. Praesent tempor at purus id vulputate. Donec a placerat augue. Suspendisse mollis lacinia dictum. Suspendisse iaculis diam eu lacus hendrerit eleifend. Nullam nunc risus, pharetra sed nulla in, consequat efficitur nunc. In hac habitasse platea dictumst. Vivamus vitae ante ullamcorper, accumsan urna feugiat, posuere libero. Pellentesque est ex, dignissim vitae mauris in, cursus blandit velit. Maecenas ut mi venenatis, laoreet tortor rhoncus, vestibulum enim. Donec sit amet nisl nec nulla maximus tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque volutpat vestibulum lorem id rhoncus. Cras ultrices lorem vel nunc consequat, ac ultrices nisi fermentum. Donec ullamcorper lorem aliquam enim ullamcorper tristique. Mauris convallis arcu ut dui faucibus, sed sollicitudin metus feugiat. Nulla eget iaculis velit. Nulla porta accumsan nisl, id porttitor libero accumsan ut. Nam vestibulum velit eu leo cursus, a bibendum tortor volutpat. Praesent blandit elementum neque, eu ornare lectus placerat et. Aliquam scelerisque, libero et congue maximus, diam nulla viverra quam, tristique lobortis neque tortor a justo. Curabitur vitae purus quis ante hendrerit hendrerit. Sed nec dolor magna. Ut rhoncus ultrices justo sit amet malesuada. Vestibulum augue mauris, porta in ullamcorper aliquet, aliquam nec metus. Curabitur non risus ut felis condimentum venenatis sit amet vel quam.",
-                            OfferDetails = "Shipping only to the USA and EU.\r\nStandard Delivery (3-7 days): $10.50\r\nExpress Delivery: (1-3 days) $15.90",
                             Price = 15.60m,
                             ProductName = "Black hoodie",
                             Quantity = 15L,
@@ -403,8 +396,6 @@ namespace TradeShopApp.Data.Migrations
                         {
                             ProductId = 4,
                             CategoryId = 7,
-                            LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius lacus eu feugiat faucibus. Proin eu auctor ipsum. Maecenas ultricies eu eros nec euismod. Proin vel neque sagittis leo convallis scelerisque. Nulla scelerisque purus eu rhoncus bibendum. Praesent tempor at purus id vulputate. Donec a placerat augue. Suspendisse mollis lacinia dictum. Suspendisse iaculis diam eu lacus hendrerit eleifend. Nullam nunc risus, pharetra sed nulla in, consequat efficitur nunc. In hac habitasse platea dictumst. Vivamus vitae ante ullamcorper, accumsan urna feugiat, posuere libero. Pellentesque est ex, dignissim vitae mauris in, cursus blandit velit. Maecenas ut mi venenatis, laoreet tortor rhoncus, vestibulum enim. Donec sit amet nisl nec nulla maximus tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque volutpat vestibulum lorem id rhoncus. Cras ultrices lorem vel nunc consequat, ac ultrices nisi fermentum. Donec ullamcorper lorem aliquam enim ullamcorper tristique. Mauris convallis arcu ut dui faucibus, sed sollicitudin metus feugiat. Nulla eget iaculis velit. Nulla porta accumsan nisl, id porttitor libero accumsan ut. Nam vestibulum velit eu leo cursus, a bibendum tortor volutpat. Praesent blandit elementum neque, eu ornare lectus placerat et. Aliquam scelerisque, libero et congue maximus, diam nulla viverra quam, tristique lobortis neque tortor a justo. Curabitur vitae purus quis ante hendrerit hendrerit. Sed nec dolor magna. Ut rhoncus ultrices justo sit amet malesuada. Vestibulum augue mauris, porta in ullamcorper aliquet, aliquam nec metus. Curabitur non risus ut felis condimentum venenatis sit amet vel quam.",
-                            OfferDetails = "Shipping only to the USA and EU.\r\nStandard Delivery (3-7 days): $10.50\r\nExpress Delivery: (1-3 days) $15.90",
                             Price = 1629.99m,
                             ProductName = "TV FG",
                             Quantity = 1L,

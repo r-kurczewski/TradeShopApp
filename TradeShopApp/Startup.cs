@@ -36,7 +36,7 @@ namespace TradeShopApp
 
 			services.AddDefaultIdentity<ApplicationUser>(options =>
 			{
-				options.SignIn.RequireConfirmedAccount = true;
+				options.SignIn.RequireConfirmedAccount = false; // no mail server connected yet
 				options.User.RequireUniqueEmail = true;
 			})
 				.AddEntityFrameworkStores<ApplicationDbContext>();

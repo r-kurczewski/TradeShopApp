@@ -43,6 +43,7 @@ namespace TradeShopApp.Areas.Identity.Pages.Account.Manage
             [Display(Name="Last name")]
 			public string LastName { get; set; }
 
+            [Display(Name ="Delivery address")]
 			public string Address { get; set; }
 		}
 

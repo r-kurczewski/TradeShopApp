@@ -23,8 +23,8 @@ namespace TradeShopApp.Controllers
 		{
 			var model = new SearchViewModel();
 			model.SearchOptions = options;
-			model.CategorySelectItems = context.Categories
-				.Select(x => new SelectListItem(x.CategoryName, x.CategoryName, x.CategoryName == options.CategoryName));
+			var selectedCategory = context.Categories.FirstOrDefault(x => x.CategoryName == options.CategoryName);
+			model.CategorySelectItems = new SelectList(context.Categories, "CategoryName", "CategoryName", selectedCategory?.CategoryName);
 			model.CategorySelectItems = model.CategorySelectItems.Prepend(new SelectListItem("All", ""));
 			model.Results = context.Products;
 
@@ -32,12 +32,11 @@ namespace TradeShopApp.Controllers
 			{
 				model.Results = model.Results
 					.Where(x => x.ProductName.ContainsIgnoreCase(options.Query)
-					|| x.Description.ContainsIgnoreCase(options.Query));
+					|| x.ShortDescription.ContainsIgnoreCase(options.Query));
 			}
 			if (options.CategoryName != null)
 			{
-				var category = context.Categories.FirstOrDefault(x => x.CategoryName == options.CategoryName);
-				var searchCategories = GetSubCategories(category).ToList();
+				var searchCategories = GetSubCategories(selectedCategory).ToList();
 				model.Results = model.Results.Where(x => searchCategories.Contains(x.Category));
 			}
 			if (options.PriceMin != null)
