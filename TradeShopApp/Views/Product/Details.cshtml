@@ -9,7 +9,7 @@
             <h4>Offer details:</h4>
             <p>@Html.DisplayMultiline(Model.OfferDetails)</p>
             <h4>Contact details:</h4>
-            <p>User: @Model.Owner.UserName</p>
+            <p>User: @Model.Owner?.UserName</p>
             <a class="btn btn-info" href="#" role="button">Contact</a>
         </div>
         <div class="col-md-8 px-lg-5 order-md-1 p-lg-5 pg-size bg-white">

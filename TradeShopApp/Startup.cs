@@ -19,6 +19,8 @@ namespace TradeShopApp
 {
 	public class Startup
 	{
+		private const bool devFlag = true;
+
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
@@ -46,7 +48,7 @@ namespace TradeShopApp
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			if (env.IsDevelopment())
+			if (env.IsDevelopment() || devFlag)
 			{
 				app.UseDeveloperExceptionPage();
 				app.UseMigrationsEndPoint();
