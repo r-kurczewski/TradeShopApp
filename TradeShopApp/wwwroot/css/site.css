@@ -1,12 +1,39 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
 body {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
 }
 
 .main {
-    min-height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+        overflow-y: auto;
+    height: 100vh;
+}
+
+.footer {
+}
+
+.chat-list {
+    height: calc(100vh - 58px - 25px);
+    overflow-y: auto;
+}
+
+.message-list {
+    height: calc(100vh - 58px - 25px - 120px);
+    overflow-y: auto;
+}
+
+.message-input{
+   flex-basis: 120px;
 }
 
 .in-line {
@@ -25,9 +52,6 @@ a {
         color: #1aa5bb;
     }
 
-.pg-size {
-    min-height: 92vh;
-}
 
 .fit-image {
     width: 100%;
@@ -60,8 +84,8 @@ a {
     border-color: #1861ac;
 }
 
-Sticky footer styles
---------------------------------------------------
+/*Sticky footer styles
+--------------------------------------------------*/
 html {
     font-size: 14px;
 }
@@ -89,8 +113,8 @@ button.accept-policy {
     line-height: inherit;
 }
 
-Sticky footer styles
---------------------------------------------------
+/*Sticky footer styles
+--------------------------------------------------*/
 html {
     position: relative;
     min-height: 100%;
@@ -101,9 +125,8 @@ body {
 }
 
 /*.footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px;*/ /*Vertically center the text there */
+    width: 100%;*/
+/*    white-space: nowrap;*/
 /*}*/

@@ -1,0 +1,9 @@
+﻿@model Transaction
+
+<div class="col-12 border-top border-bottom @(Model.Selected ? "bg-info" : "bg-white")">
+    <a class="stretched-link" asp-controller="Messages" asp-action="Index" asp-route-id="@Model.Id"></a>
+    <p class="mb-0">
+        User: @Model.Buyer.UserName
+    </p>
+    <h3>@Model.Product.ProductName</h3>
+</div>

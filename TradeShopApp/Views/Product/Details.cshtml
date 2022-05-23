@@ -1,6 +1,10 @@
 ﻿@model Product
+@inject UserManager<ApplicationUser> userManager;
+@{
+    ViewData["Title"] = Model.ProductName;
+    var user = await userManager.GetUserAsync(User);
+}
 
-<div class="container-lg">
     <div class="row">
         <div class="col-md-4 order-md-2 p-3 mb-sm-3 mb-md-0 bg-light border">
             <h2>@Model.ProductName</h2>
@@ -10,7 +14,10 @@
             <p>@Html.DisplayMultiline(Model.OfferDetails)</p>
             <h4>Contact details:</h4>
             <p>User: @Model.Owner?.UserName</p>
-            <a class="btn btn-info" href="#" role="button">Contact</a>
+            @if (user != Model.Owner)
+            {
+                <a class="btn btn-info" asp-controller="Messages" asp-action="New" asp-route-id="@Model.ProductId" role="button">Contact</a>
+            }
         </div>
         <div class="col-md-8 px-lg-5 order-md-1 p-lg-5 pg-size bg-white">
             <div class="row">
@@ -25,4 +32,3 @@
             </div>
         </div>
     </div>
-</div>

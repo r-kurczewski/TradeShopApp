@@ -12,6 +12,7 @@ using TradeShopApp.Models;
 
 namespace TradeShopApp.Controllers
 {
+	[Authorize]
 	public class ProductsController : Controller
 	{
 		private readonly ApplicationDbContext context;
@@ -23,7 +24,6 @@ namespace TradeShopApp.Controllers
 			this.userManager = userManager;
 		}
 
-		[Authorize]
 		public async Task<IActionResult> Index()
 		{
 			var user = await userManager.GetUserAsync(User);
@@ -33,7 +33,6 @@ namespace TradeShopApp.Controllers
 			return View(await applicationDbContext.ToListAsync());
 		}
 
-		[Authorize]
 		public async Task<IActionResult> Details(int? id)
 		{
 			if (id == null) return NotFound();
@@ -100,7 +99,6 @@ namespace TradeShopApp.Controllers
 		// To protect from overposting attacks, enable the specific properties you want to bind to.
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
-		[Authorize]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,ProductName,Quantity,Price,ThumbnailPath,ShortDescription,LongDescription,OfferDetails")] Product product)
 		{

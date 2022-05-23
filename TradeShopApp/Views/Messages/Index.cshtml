@@ -1,0 +1,60 @@
+﻿@model MessagesViewModel
+@inject UserManager<ApplicationUser> userManager
+@{
+    var user = await userManager.GetUserAsync(User);
+    ViewData["Title"] = "Messages";
+}
+<div class="row flex-grow-1 d-flex">
+    <div class="col-md-4 pb-3 chat-list bg-light border-right">
+        <h3 class="my-2">Messages</h3>
+        <h4 class="my-2">Selling</h4>
+        <div class="row px-3 flex-grow-1">
+            @if (Model.selling.Count > 0)
+            {
+                @foreach (var transaction in Model.selling)
+                {
+                    <partial name="TransactionChatPartial" model="@transaction" />
+                }
+            }
+            else
+            {
+                <h4 class="col-12 text-center">No messages</h4>
+            }
+        </div>
+        <h4 class="my-2">Buying</h4>
+            <div class="row px-3 flex-grow-1">
+                @if (Model.buying.Count > 0)
+                {
+                    @foreach (var transaction in Model.buying)
+                    {
+                        <partial name="TransactionChatPartial" model="@transaction" />
+                    }
+                }
+                else
+                {
+                    <h4 class="col-12 text-center">No messages</h4>
+                }
+        </div>
+    </div>
+    <div class="col-md-8 d-flex flex-column justify-content-between flex-grow-1 px-0">
+        <div class="message-list">
+            @foreach (var message in Model.chatMessages)
+            {
+                <div class="col-8 mx-4 my-3 px-3 pt-3 pb-0 border @(user == message.Author ? "bg-info float-right" : "bg-light float-left")">
+                    <p><strong>@message.Author?.UserName</strong></p>
+                    <p>@Html.DisplayMultiline(message.Content)</p>
+                    <p class="float-right">@message.SentDate</p>
+                </div>
+            }
+        </div>
+        <form href="#" method="post" class=" d-flex p-3 flex-column justify-content-center bg-light border-top message-input">
+            <input name="message" placeholder="Write a message">
+            <div class="my-2">
+
+                <button class="btn btn-secondary" type="button" disabled>Cancel</button>
+                <button class="btn btn-secondary" type="button" disabled>Complete</button>
+                <button type="submit" class="btn btn-info float-right">Send</button>
+            </div>
+        </form>
+    </div>
+</div>

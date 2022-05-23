@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="~/lib/mdbootstrap/css/mdb.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body class="">
-    <header>
+<body>
+    <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TradeShopApp</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
-
                 </ul>
                 <form class="form-inline navbar-expand-md mr-2" asp-area="" asp-controller="Search" asp-action="Index" method="get">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
@@ -34,13 +33,11 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="container-fluid main">
+    <main role="main" class="main container-fluid">
         @RenderBody()
     </main>
-    <footer class="border-top footer text-muted">
-        <div class="container-fluid">
-            <strong>This is only a demonstration website, do not provide any sensitive information. Website content can be erased at any time.</strong>
-        </div>
+    <footer class="footer border-top bg-warning">
+        <strong>This is only a demonstration website.</strong>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

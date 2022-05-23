@@ -32,7 +32,7 @@ namespace TradeShopApp.Models
 		public string ThumbnailPath { get; set; }
 
 		[Display(Name = "Short description")]
-		[MaxLength(40)]
+		[MaxLength(180)]
 		public string ShortDescription { get; set; }
 
 		[Display(Name = "Long description")]

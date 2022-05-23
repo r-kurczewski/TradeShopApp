@@ -1,11 +1,9 @@
 ﻿@model SearchViewModel
-
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Search";
 }
 
-<div class="row pg-size">
+<div class="row flex-grow-1">
     <div class="col-lg-3 pt-2 bg-light border-right">
         <form method="get" asp-area="" asp-controller="Search" asp-action="Index">
             <div class="form-group">

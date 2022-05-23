@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TradeShopApp.Models;
 
@@ -11,12 +12,15 @@ namespace TradeShopApp.Data
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 	{
 		private const string lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius lacus eu feugiat faucibus. Proin eu auctor ipsum. Maecenas ultricies eu eros nec euismod. Proin vel neque sagittis leo convallis scelerisque. Nulla scelerisque purus eu rhoncus bibendum. Praesent tempor at purus id vulputate. Donec a placerat augue. Suspendisse mollis lacinia dictum. Suspendisse iaculis diam eu lacus hendrerit eleifend. Nullam nunc risus, pharetra sed nulla in, consequat efficitur nunc. In hac habitasse platea dictumst. Vivamus vitae ante ullamcorper, accumsan urna feugiat, posuere libero. Pellentesque est ex, dignissim vitae mauris in, cursus blandit velit. Maecenas ut mi venenatis, laoreet tortor rhoncus, vestibulum enim. Donec sit amet nisl nec nulla maximus tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque volutpat vestibulum lorem id rhoncus. Cras ultrices lorem vel nunc consequat, ac ultrices nisi fermentum. Donec ullamcorper lorem aliquam enim ullamcorper tristique. Mauris convallis arcu ut dui faucibus, sed sollicitudin metus feugiat. Nulla eget iaculis velit. Nulla porta accumsan nisl, id porttitor libero accumsan ut. Nam vestibulum velit eu leo cursus, a bibendum tortor volutpat. Praesent blandit elementum neque, eu ornare lectus placerat et. Aliquam scelerisque, libero et congue maximus, diam nulla viverra quam, tristique lobortis neque tortor a justo. Curabitur vitae purus quis ante hendrerit hendrerit. Sed nec dolor magna. Ut rhoncus ultrices justo sit amet malesuada. Vestibulum augue mauris, porta in ullamcorper aliquet, aliquam nec metus. Curabitur non risus ut felis condimentum venenatis sit amet vel quam.";
-		private const string delivery = 
+		private const string delivery =
 @"Shipping only to the USA and EU.
 Standard Delivery (3-7 days): $10.50
 Express Delivery: (1-3 days) $15.90";
+
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
+		public DbSet<Message> Messages { get; set; }
+		public DbSet<Transaction> Transactions { get; set; }
 
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options)
@@ -26,6 +30,7 @@ Express Delivery: (1-3 days) $15.90";
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+			base.OnModelCreating(builder);
 
 			var categories = new List<Category>()
 			{
@@ -44,12 +49,15 @@ Express Delivery: (1-3 days) $15.90";
 			};
 			builder.Entity<Category>().HasData(categories);
 
+			//SeedUsers(builder);
+
 			var products = new List<Product>()
 			{
 				new Product()
 				{
 					ProductId = 1,
 					CategoryId = 12,
+					//OwnerId = users.First().Id,
 					ProductName ="EyePhone 5",
 					Price = 849.99M,
 					Quantity = 2,
@@ -62,6 +70,7 @@ Express Delivery: (1-3 days) $15.90";
 				{
 					ProductId = 2,
 					CategoryId = 10,
+					//OwnerId = users.First().Id,
 					ProductName ="Whicher: The lady of the River",
 					Price = 35.60M,
 					Quantity = 1,
@@ -74,6 +83,7 @@ Express Delivery: (1-3 days) $15.90";
 				{
 					ProductId = 3,
 					CategoryId = 3,
+					//OwnerId = users.First().Id,
 					ProductName ="Black hoodie",
 					Price = 15.60M,
 					Quantity = 15,
@@ -87,21 +97,54 @@ Express Delivery: (1-3 days) $15.90";
 				{
 					ProductId = 4,
 					CategoryId = 7,
+					//OwnerId = users.First().Id,
 					ProductName ="TV FG",
 					Price = 1629.99M,
 					Quantity = 1,
 					ThumbnailPath = "https://www.publicdomainpictures.net/pictures/70000/velka/tv-isolated-background-clipart.jpg",
-					ShortDescription = @"Manufacturer: FG
-									Screen diagonal: 32 inches(80 cm)
-									Nominal resolution: 1366 x 768(HD Ready) pixels
-									Implementation technology: LCD - LED",
+					ShortDescription =
+@"Manufacturer: FG
+Screen diagonal: 32 inches(80 cm)
+Nominal resolution: 1366 x 768(HD Ready) pixels
+Implementation technology: LCD - LED",
 					LongDescription = lorem,
 					OfferDetails = delivery,
 				},
 			};
 			builder.Entity<Product>().HasData(products);
+		}
 
-			base.OnModelCreating(builder);
+		private void SeedUsers(ModelBuilder builder)
+		{
+			// any unique string id
+			const string ADMIN_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
+			const string ROLE_ID = "ad376a8f-9eab-4bb9-9fca-30b01540f445";
+
+			builder.Entity<IdentityRole>().HasData(new IdentityRole
+			{
+				Id = ROLE_ID,
+				Name = "admin",
+				NormalizedName = "admin"
+			});
+
+			var hasher = new PasswordHasher<ApplicationUser>();
+			builder.Entity<ApplicationUser>().HasData(new ApplicationUser
+			{
+				Id = ADMIN_ID,
+				UserName = "admin",
+				NormalizedUserName = "admin",
+				Email = "admin@gmail.com",
+				NormalizedEmail = "admin@gmail.com",
+				EmailConfirmed = false,
+				PasswordHash = hasher.HashPassword(null, "Admin123#"),
+				SecurityStamp = string.Empty
+			});
+
+			builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+			{
+				RoleId = ROLE_ID,
+				UserId = ADMIN_ID
+			});
 		}
 	}
 }

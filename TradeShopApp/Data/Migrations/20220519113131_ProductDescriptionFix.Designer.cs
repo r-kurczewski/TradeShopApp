@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TradeShopApp.Data;
 
 namespace TradeShopApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220519113131_ProductDescriptionFix")]
+    partial class ProductDescriptionFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,32 +322,6 @@ namespace TradeShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TradeShopApp.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("ToSeller")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TransactionId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("TradeShopApp.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -440,31 +416,6 @@ namespace TradeShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TradeShopApp.Models.Transaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BuyerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("State")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BuyerId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -525,15 +476,6 @@ namespace TradeShopApp.Data.Migrations
                     b.Navigation("ParentCategory");
                 });
 
-            modelBuilder.Entity("TradeShopApp.Models.Message", b =>
-                {
-                    b.HasOne("TradeShopApp.Models.Transaction", "Transaction")
-                        .WithMany()
-                        .HasForeignKey("TransactionId");
-
-                    b.Navigation("Transaction");
-                });
-
             modelBuilder.Entity("TradeShopApp.Models.Product", b =>
                 {
                     b.HasOne("TradeShopApp.Models.Category", "Category")
@@ -549,21 +491,6 @@ namespace TradeShopApp.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("TradeShopApp.Models.Transaction", b =>
-                {
-                    b.HasOne("TradeShopApp.Models.ApplicationUser", "Buyer")
-                        .WithMany()
-                        .HasForeignKey("BuyerId");
-
-                    b.HasOne("TradeShopApp.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Buyer");
-
-                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

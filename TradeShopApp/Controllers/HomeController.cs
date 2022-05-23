@@ -28,6 +28,7 @@ namespace TradeShopApp.Controllers
 			model.CategoryTree = categoryTree;
 			model.ProductsDisplay = context.Products
 				.Include(x => x.Owner)
+				.Take(5)
 				.ToList();
 			return View(model);
 		}
