@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryId)
+            @Html.DisplayFor(model => model.Category.CategoryName)
         </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProductName)
@@ -40,7 +40,7 @@
             @Html.DisplayNameFor(model => model.ThumbnailPath)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ThumbnailPath)
+            <img class="thumbnail" src="@Model.ThumbnailPath" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ShortDescription)

@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TradeShopApp.Models
 {
@@ -16,6 +13,7 @@ namespace TradeShopApp.Models
 
 		public Category Category { get; set; }
 
+		[MinLength(5)]
 		[Display(Name = "Product name")]
 		public string ProductName { get; set; }
 
@@ -40,5 +38,9 @@ namespace TradeShopApp.Models
 
 		[Display(Name = "Offer details")]
 		public string OfferDetails { get; set; }
+
+		[Display(Name ="Item photo")]
+		[NotMapped]
+		public IFormFile UploadedPhoto { get; set; }
 	}
 }

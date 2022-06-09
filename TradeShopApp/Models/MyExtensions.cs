@@ -16,7 +16,7 @@ namespace TradeShopApp.Models
 
 		public static IHtmlContent DisplayMultiline<T>(this IHtmlHelper<T> html, string str)
 		{
-			return html.Raw(str.Replace("\r\n", "<br />").Replace("\n", "<br />"));
+			return html.Raw(str?.Replace("\r\n", "<br />").Replace("\n", "<br />"));
 		}
 	}
 }

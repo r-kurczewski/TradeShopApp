@@ -42,6 +42,13 @@ body {
 
 .thumbnail {
     width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.product-item
+{
+    height: 300px;
 }
 
 a {
@@ -55,8 +62,8 @@ a {
 
 .fit-image {
     width: 100%;
-    object-fit: cover;
-    /*height: 300px;*/ /* only if you want fixed height */
+    height: 100%;
+    object-fit: contain;
 }
 
 /*default .net styling*/
